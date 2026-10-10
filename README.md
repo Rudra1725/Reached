@@ -44,8 +44,18 @@ Commuters, students, and daily travelers often need to notify family or guardian
 
 ## 🏗️ Architecture & How It Works
 
-```mermaid
-flowchart TD
+<div align="center">
+  <img src="working.png" alt="Reached App Architecture & Workflow" width="100%">
+</div>
+
+---
+
+### Execution Process
+1. **Configuration (`SettingsActivity`)** — Configures target coordinates, contacts, message payload, and schedule per preset slot.
+2. **Auto-Arm Alarm (`AlarmManager`)** — Sets the `setAlarmClock()` intent, Android’s highest system alarm priority, penetrating aggressive OEM battery optimizations and Android Doze mode.
+3. **Registration (`AlarmArmReceiver`)** — Briefly acquires a hardware `WakeLock` to guarantee CPU persistence while registering the circular 750m perimeter.
+4. **Passive Monitoring (`Google Play Services`)** — OS-level passive geofencing is registered to monitor when you enter the physical boundary, keeping location radios entirely offline until the trigger.
+5. **SMS Dispatch & Disarm (`GeofenceReceiver`)** — Extracts the active slot, enforces a 15-second debounce check, delivers your SMS payload through `SmsManager`, and immediately deletes the geofence to finalize disarming.
     A[Settings & Configuration<br>Target coords, contacts, preset slot] -->|Schedule via AlarmManager| B[AlarmManager.setAlarmClock<br>High-priority trigger pierces OS Doze Mode]
     B -->|Fires at Scheduled Time| C[AlarmArmReceiver<br>Holds WakeLock and registers 750m Geofence]
     C -->|Passes Intent to System| D[Google Play Services<br>Passive boundary monitoring]
