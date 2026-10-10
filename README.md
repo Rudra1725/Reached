@@ -46,17 +46,7 @@ Commuters, students, and daily travelers often need to notify family or guardian
 
 ```mermaid
 flowchart TD
-    A["⚙️ Settings & Configuration\n(Target coords, multi-contacts, preset slot & time)"] -->|"Schedule via AlarmManager"| B["⏰ AlarmManager.setAlarmClock()\n(High-priority trigger; pierces OS Doze Mode)"]
-    
-    B -->|"Fires at Scheduled Time"| C["📡 AlarmArmReceiver\n(Holds WakeLock + Registers 750m Geofence)"]
-    
-    C -->|"Passes Intent to System"| D["🛰️ Google Play Services\n(Passive Hardware-assisted Boundary Monitoring)"]
-    
-    D -->|"GEOFENCE_TRANSITION_ENTER"| E["📨 GeofenceReceiver\n- Validates slot parameters\n- 15s Debounce check\n- Dispatches SMS via SmsManager\n- Self-Disarms GPS to save battery"]
-
-    style A fill:#121824,stroke:#3B82F6,stroke-width:2px,color:#fff
-    style B fill:#121824,stroke:#F59E0B,stroke-width:2px,color:#fff
-    style C fill:#121824,stroke:#10B981,stroke-width:2px,color:#fff
-    style D fill:#121824,stroke:#6366F1,stroke-width:2px,color:#fff
-    style E fill:#121824,stroke:#2EE59D,stroke-width:2px,color:#fff
-```
+    A[Settings & Configuration<br>Target coords, contacts, preset slot] -->|Schedule via AlarmManager| B[AlarmManager.setAlarmClock<br>High-priority trigger pierces OS Doze Mode]
+    B -->|Fires at Scheduled Time| C[AlarmArmReceiver<br>Holds WakeLock and registers 750m Geofence]
+    C -->|Passes Intent to System| D[Google Play Services<br>Passive boundary monitoring]
+    D -->|GEOFENCE_TRANSITION_ENTER| E[GeofenceReceiver<br>Validates slot, 15s debounce, dispatches SMS, disarms GPS]
