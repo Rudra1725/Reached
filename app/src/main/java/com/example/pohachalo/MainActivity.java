@@ -98,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
         Animation floatAnimation = AnimationUtils.loadAnimation(this, R.anim.float_and_pulse);
         cardStatusFloating.startAnimation(floatAnimation);
 
-        // Schedule all configured presets independently
         int visibleCount = prefs.getInt("visible_slots_count", 1);
         for (int i = 1; i <= visibleCount; i++) {
             String prefix = "slot_" + i + "_";
@@ -135,10 +134,8 @@ public class MainActivity extends AppCompatActivity {
         int activeSlot = prefs.getInt("active_slot_id", 1);
         int visibleCount = prefs.getInt("visible_slots_count", 1);
 
-        // Slot 1
         bindSlotRow(1, tvSlot1Name, tvSlot1Time, tvSlot1Badge, activeSlot);
 
-        // Slot 2
         if (visibleCount >= 2) {
             itemSlot2.setVisibility(View.VISIBLE);
             divSlot2.setVisibility(View.VISIBLE);
@@ -148,7 +145,6 @@ public class MainActivity extends AppCompatActivity {
             divSlot2.setVisibility(View.GONE);
         }
 
-        // Slot 3
         if (visibleCount >= 3) {
             itemSlot3.setVisibility(View.VISIBLE);
             divSlot3.setVisibility(View.VISIBLE);
