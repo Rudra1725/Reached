@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvStatusBadge, tvStatusText;
     private MaterialButton btnToggle;
 
-    // Presets overview box items
     private TextView tvSlot1Name, tvSlot1Time, tvSlot1Badge;
     private LinearLayout itemSlot2, itemSlot3;
     private View divSlot2, divSlot3;
