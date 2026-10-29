@@ -37,7 +37,6 @@ public class AlarmArmReceiver extends BroadcastReceiver {
         final PowerManager.WakeLock finalWakeLock = wakeLock;
         final PendingResult pendingResult = goAsync();
 
-        // Retrieve the triggering slot ID
         int slotId = intent.getIntExtra("slot_id", 1);
 
         SharedPreferences prefs = context.getSharedPreferences("PohachaloPrefs", Context.MODE_PRIVATE);
@@ -55,7 +54,6 @@ public class AlarmArmReceiver extends BroadcastReceiver {
         String msg = prefs.getString(prefix + "msg", "Reached safely.");
         String combinedPhones = p1 + (p2.isEmpty() ? "" : "," + p2) + (p3.isEmpty() ? "" : "," + p3);
 
-        // Reschedule this specific slot's alarm for tomorrow
         SettingsActivity.scheduleSlotAlarm(context, slotId, hour, minute);
 
         if (Float.isNaN(lat) || Float.isNaN(lng) || combinedPhones.isEmpty()) {
@@ -70,7 +68,6 @@ public class AlarmArmReceiver extends BroadcastReceiver {
 
         GeofencingClient geofencingClient = LocationServices.getGeofencingClient(context);
 
-        // Unique geofence request ID per slot (GEOFENCE_SLOT_1, GEOFENCE_SLOT_2, etc.)
         String geofenceRequestId = "GEOFENCE_SLOT_" + slotId;
 
         Geofence geofence = new Geofence.Builder()
@@ -86,7 +83,6 @@ public class AlarmArmReceiver extends BroadcastReceiver {
                 .addGeofence(geofence)
                 .build();
 
-        // Pass this slot's payload to the GeofenceReceiver
         Intent geofenceIntent = new Intent(context, GeofenceReceiver.class);
         geofenceIntent.putExtra("slot_id", slotId);
         geofenceIntent.putExtra("target_phones", combinedPhones);
