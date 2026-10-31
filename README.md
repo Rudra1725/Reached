@@ -8,7 +8,6 @@
 [![Java](https://img.shields.io/badge/Language-Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
 [![Google Play Services](https://img.shields.io/badge/API-Play%20Services%20Geofencing-4285F4?style=for-the-badge&logo=googleplay&logoColor=white)](https://developers.google.com/android/reference/com/google/android/gms/location/GeofencingClient)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 
 
 <p align="center">
