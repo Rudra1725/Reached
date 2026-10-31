@@ -20,7 +20,7 @@
 
 ---
 
-## 📌 The Problem
+### 📌 The Problem
 
 Commuters, students, and daily travelers often need to notify family or guardians the moment they reach their destination (e.g., college, school, workplace). 
 
